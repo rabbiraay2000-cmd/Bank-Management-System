@@ -1,18 +1,17 @@
 import java.util.Scanner;
-
-public class BankManagementSystem {
-
+public class BankManagementSystem
+{
     static Scanner sc = new Scanner(System.in);
-
     static String accountHolder = "";
     static String accountNumber = "";
     static int pin = 0;
     static double balance = 0;
     static boolean accountCreated = false;
+    static void createAccount()
+{
 
-    static void createAccount() {
-
-        if (accountCreated) {
+        if(accountCreated)
+{
             System.out.println("Account already exists.");
             return;
         }
@@ -31,15 +30,14 @@ public class BankManagementSystem {
         System.out.print("Enter Initial Deposit: ");
         balance = sc.nextDouble();
         sc.nextLine();
-
         accountCreated = true;
-
         System.out.println("Account created successfully.");
     }
+    static boolean verifyPin()
+{
 
-    static boolean verifyPin() {
-
-        if (!accountCreated) {
+        if (!accountCreated)
+{
             System.out.println("Please create an account first.");
             return false;
         }
@@ -48,7 +46,8 @@ public class BankManagementSystem {
         int enteredPin = sc.nextInt();
         sc.nextLine();
 
-        if (enteredPin == pin) {
+        if (enteredPin == pin)
+{
             return true;
         } else {
             System.out.println("Incorrect PIN.");
@@ -56,76 +55,82 @@ public class BankManagementSystem {
         }
     }
 
-    static void deposit() {
+    static void deposit()
+{
 
-        if (verifyPin()) {
+        if (verifyPin())
+{
 
             System.out.print("Enter Deposit Amount: ");
             double amount = sc.nextDouble();
             sc.nextLine();
 
-            if (amount > 0) {
+            if (amount > 0)
+{
                 balance += amount;
                 System.out.println("Deposit Successful.");
                 System.out.println("Current Balance: " + balance);
-            } else {
+            } else
+{
                 System.out.println("Invalid Amount.");
             }
         }
     }
 
-    static void withdraw() {
-
-        if (verifyPin()) {
-
+    static void withdraw() 
+{
+        if (verifyPin())
+{
             System.out.print("Enter Withdrawal Amount: ");
             double amount = sc.nextDouble();
             sc.nextLine();
 
-            if (amount <= 0) {
+            if (amount <= 0)
+{
                 System.out.println("Invalid Amount.");
-            } else if (amount > balance) {
+            } else if (amount > balance)
+{
                 System.out.println("Insufficient Balance.");
-            } else {
+            } else
+{
                 balance -= amount;
                 System.out.println("Withdrawal Successful.");
                 System.out.println("Remaining Balance: " + balance);
             }
         }
     }
+    static void checkBalance()
+{
 
-    static void checkBalance() {
-
-        if (verifyPin()) {
+        if (verifyPin())
+{
             System.out.println("Current Balance: " + balance);
         }
     }
+    static void viewAccountDetails()
+{
 
-    static void viewAccountDetails() {
-
-        if (verifyPin()) {
-
+        if (verifyPin())
+{
             System.out.println("\n===== ACCOUNT DETAILS =====");
             System.out.println("Account Holder : " + accountHolder);
             System.out.println("Account Number : " + accountNumber);
             System.out.println("Balance        : " + balance);
         }
     }
-
-    static void changePin() {
-
-        if (verifyPin()) {
-
+    static void changePin()
+{
+        if (verifyPin())
+{
             System.out.print("Enter New PIN: ");
             pin = sc.nextInt();
             sc.nextLine();
-
-            System.out.println("PIN changed successfully.");
+            System.out.println("PIN changed
+successfully.");
         }
     }
-
-    static void displayMenu() {
-
+    static void displayMenu()
+{
         System.out.println("\n===== BANK MANAGEMENT SYSTEM =====");
         System.out.println("1. Create Account");
         System.out.println("2. Deposit Money");
@@ -136,19 +141,15 @@ public class BankManagementSystem {
         System.out.println("7. Exit");
         System.out.print("Enter Your Choice: ");
     }
-
-    public static void main(String[] args) {
-
+    public static void main(String[] args)
+{
         int choice;
-
         do {
-
             displayMenu();
             choice = sc.nextInt();
             sc.nextLine();
-
-            switch (choice) {
-
+            switch (choice)
+{
                 case 1:
                     createAccount();
                     break;
@@ -176,13 +177,11 @@ public class BankManagementSystem {
                 case 7:
                     System.out.println("Thank you for using the Bank Management System.");
                     break;
-
                 default:
                     System.out.println("Invalid Choice. Try Again.");
             }
 
         } while (choice != 7);
-
         sc.close();
     }
 }
